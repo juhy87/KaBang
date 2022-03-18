@@ -1,15 +1,10 @@
 package parser;
 
-import entity.User;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Set;
 
 public class UserParser {
     public HashMap<String, Object> parse(Object obj) {
@@ -42,20 +37,5 @@ public class UserParser {
             return null;
         }
     }
-//    public ArrayList<User> parse2(String s){
-//        JSONParser jsonParser = new JSONParser();
-//        ArrayList<User> users = new ArrayList<>();
-//        try{
-//
-//            JSONArray jsonArray = (JSONArray) jsonParser.parse(s);
-//            for(int i=0;i< jsonArray.size();i++){
-//                JSONObject jsonObj = (JSONObject)jsonArray.get(i);
-//                users.add(new User(jsonObj));
-//            }
-//
-//        }catch (ParseException e){
-//            return null;
-//        }
-//        return users;
-//    }
+
 }

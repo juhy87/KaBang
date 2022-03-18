@@ -8,10 +8,11 @@ import org.json.simple.parser.ParseException;
 import parser.UserParser;
 import service.TemplateService;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 
 public class Main {
 
@@ -20,7 +21,6 @@ public class Main {
     public static Log log = Log.getInstance();
 
     public static void main(String[] args) throws IOException, ParseException {
-        System.out.println("[hello]");
 
         //1. data read
         FileInputStream fs = new FileInputStream("input.txt");
@@ -39,7 +39,7 @@ public class Main {
 
 
         //3. command read
-        fs = new FileInputStream("template1.txt");
+        fs = new FileInputStream("template2.txt");
         br = new BufferedReader(new InputStreamReader(fs));
         ArrayList<Template> templates = new ArrayList<>();
         String command;
@@ -52,9 +52,24 @@ public class Main {
 
         //4. write
         for(int i = 0 ; i < jsonArray.size(); i++){
-            JSONObject o = (JSONObject) jsonArray.get(i);
+            Object obj1 = jsonArray.get(i);
             for(Template template : templates){
-                templateService.writeData(o, template);
+
+                if(template.type == TemplateType.FOR){
+                    obj1 = templateService.getObject(obj1, template);
+                }else if(template.type == TemplateType.END){
+                    obj1 = jsonArray.get(i);
+                }else{
+                    if(obj1 instanceof JSONObject){
+                        templateService.writeData((JSONObject) obj1, template);
+                    }else if(obj1 instanceof  JSONArray){
+                        for(int j = 0 ; j < ((JSONArray)obj1).size(); j++ ){
+                            Object obj2  = ((JSONArray) obj1).get(j);
+                            templateService.writeData((JSONObject) obj2, template);
+                        }
+
+                    }
+                }
             }
             log.newLine();
         }

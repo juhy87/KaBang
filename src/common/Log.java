@@ -28,6 +28,7 @@ public class Log {
          }
     }
     public void newLine(){
+//        System.out.println();
         try{
             bw.newLine();
 
@@ -37,6 +38,8 @@ public class Log {
     }
 
     public void write(String str){
+//        System.out.print(str);
+
         try{
             bw.write(str);
 

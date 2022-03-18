@@ -11,6 +11,7 @@ public class Template {
     public String prefix;
     public List<String> cmds;
     public TemplateType type;
+    public String cmd;
 
     public Template(String cmd){
         if(cmd.contains(":")){
@@ -28,13 +29,32 @@ public class Template {
             //<? for ADDR in USER.info.addrs ?>
             }else if(cmd.startsWith("<? for")){
 
-
+                this.cmd = forMathe(cmd);
                 type= TemplateType.FOR;
 
             }
         }
     }
 
+    public String forMathe(String s){
+        String matche = null;
+        Matcher m = Pattern.compile("<\\?\\s*for.*?in(.*)?\\?>")
+                .matcher(s);
+        if (m.find()) {
+            matche = m.group(1)
+                    .trim();
+
+
+        }
+
+        return matche;
+    }
+
+    /**
+     * Name: <?=USER.info.name.given ?> <?=USER.info.name.family?>\n
+     * @param s
+     * @return : [ "USER.info.name.given", "USER.info.name.family", ...]
+     */
     public List<String> allMathes(String s){
         List<String> allMatches = new ArrayList<String>();
         Matcher m = Pattern.compile("<\\?=.*?\\?>")

@@ -1,7 +1,7 @@
 package service;
 
 import common.Log;
-import common.Template;
+import entity.Template;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -12,6 +12,12 @@ public class TemplateService {
     public Object getObject(Object obj, Template template) {
         String cmd = template.cmd;
         String[] split = cmd.split("\\.");
+
+        //기저사례
+        if(split.length == 1){
+            return obj;
+        }
+
         for(int i = 1;  i< split.length; i++){
             if(obj == null){
                 return null;
@@ -37,11 +43,13 @@ public class TemplateService {
             String[] split = cmd.split("\\.");
             Object obj2 = obj;
 
+            //기저사례
+            if(split.length == 1 && obj2 instanceof String){
+                log.write(((String) obj2)+" ");
+                return;
+            }
+
             for(int i = 1; i< split.length; i++){
-//                if(obj2 == null){
-//                    log.write("? ");
-//                    break;
-//                }
 
                 if(obj2 instanceof JSONObject){
                     obj2 = ((JSONObject) obj2).getOrDefault(split[i], "? ");

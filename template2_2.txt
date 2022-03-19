@@ -1,0 +1,5 @@
+Family name: <?=USER.info.name.family?>\n
+Given name: <?=USER.info.name.given ?>\n
+Heigh : <?= USER.info.heigh?> \n
+MemberShip : <?=USER.membership.grade?> <?= USER.membership.id ?>\n
+\n

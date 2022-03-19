@@ -1,11 +1,10 @@
 import common.Log;
-import common.Template;
+import entity.Template;
 import enums.TemplateType;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import parser.UserParser;
 import service.TemplateService;
 
 import java.io.BufferedReader;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 
 public class Main {
 
-    public static UserParser userParser = new UserParser();
     public static TemplateService templateService = new TemplateService();
     public static Log log = Log.getInstance();
 

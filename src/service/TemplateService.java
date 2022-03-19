@@ -46,7 +46,7 @@ public class TemplateService {
             //기저사례
             if(split.length == 1 && obj2 instanceof String){
                 log.write(((String) obj2)+" ");
-                return;
+                continue;
             }
 
             for(int i = 1; i< split.length; i++){

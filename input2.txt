@@ -2,12 +2,13 @@
   {
      "info":{
         "name":{
-            "family":"KIM",
-             "given":"HS"
+            "family":"KIM1",
+             "given":"HS1"
          },
          "addrs":[
              {"addr1":"ABC","addr2":"CDE"}
          ],
+		 "arr" : [],
 		 "heigh" : "3",
 		 "spec" : {
 			"math" : "100",
@@ -22,14 +23,26 @@
     {
        "info":{
           "name":{
-              "family":"Doe",
-              "given":"John",
-              "middle":"Siva"
+              "family":"Doe2",
+              "given":"John2",
+              "middle":"Siva2"
           },
           "addrs":[
                {"addr1":"AAA","addr2":"BBB"},
                {"addr1":"123","addr2":"234"}
            ],
+		  "arr" : [
+			  {
+				"a" : {
+					"aa" : "1",
+					"aaa" : "2"
+				},
+				"b" : {
+					"bb" : "11",
+					"bbb" : "22"				
+				}
+			  }
+		  ],
 		  "heigh" : "5"
 		  "spec" : {
 			"math" : "1000",
@@ -44,15 +57,37 @@
    {
        "info":{
            "name":{
-                "family":"Doe",
-                "given":"Jane"
+                "family":"Doe3",
+                "given":"Jane3"
             },
             "addrs":[],
 			"spec" : {
 				"math" : "300",
 				"english" : "400",
 				"science" : "500"
-			}
+			},
+		    "arr" : [
+			  {
+				"a" : {
+					"aa" : "1",
+					"aaa" : "2"
+				},
+				"b" : {
+					"bb" : "11",
+					"bbb" : "22"				
+				}
+			  },
+			  {
+				"a" : {
+					"aa" : "1111",
+					"aaa" : "22222"
+				},
+				"b" : {
+					"bb" : "3333",
+					"bbb" : "444"				
+				}
+			  }
+		  ]
         },
         "membership":{
             "grade": "BRONZE",

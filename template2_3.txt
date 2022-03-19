@@ -1,0 +1,5 @@
+Name: <?=USER.info.name.given ?> <?=USER.info.name.family?>\n
+<? for ARR in USER.info.arr ?>
+ARR : <?= ARR.a.aa?> <?= ARR.a.aaa?> <?= ARR.b.bb?> <?= ARR.b.bbb?> \n
+<? endfor ?>
+\n

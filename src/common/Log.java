@@ -8,7 +8,7 @@ public class Log {
 
     private static Log instance;
 
-    public BufferedWriter bw;
+    private BufferedWriter bw;
 
     private Log() {
         try{

@@ -22,10 +22,16 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ParseException {
 
+        String inputFilePath = "input1.txt";
+        String templateFilePath = "template1_2.txt";
+        if(args.length == 2){
+            inputFilePath = args[0];
+            templateFilePath = args[1];
+        }
+
         //1. data read
-        FileInputStream fs = new FileInputStream("input.txt");
+        FileInputStream fs = new FileInputStream(inputFilePath);
         BufferedReader br = new BufferedReader(new InputStreamReader(fs));
-//        BufferedWriter bw = new BufferedWriter(new FileWriter("output.txt"));
         StringBuilder dataSb = new StringBuilder();
         String data;
         while((data = br.readLine()) != null){
@@ -35,11 +41,9 @@ public class Main {
         //2. data parsing
         JSONParser jsonParser = new JSONParser();
         JSONArray jsonArray = (JSONArray) jsonParser.parse(dataSb.toString());
-//        HashMap<String, Object> hashMap= userParser.parse(parse);
 
-
-        //3. command read
-        fs = new FileInputStream("template2.txt");
+        //3. template File read
+        fs = new FileInputStream(templateFilePath);
         br = new BufferedReader(new InputStreamReader(fs));
         ArrayList<Template> templates = new ArrayList<>();
         String command;
@@ -50,7 +54,7 @@ public class Main {
             templates.add(new Template(command));
         }
 
-        //4. write
+        //4. outputFile.txt write
         for(int i = 0 ; i < jsonArray.size(); i++){
             Object obj1 = jsonArray.get(i);
             for(Template template : templates){
@@ -73,19 +77,6 @@ public class Main {
             }
             log.newLine();
         }
-//        while (keys.hasNext()) {
-//            String key = keys.next();
-//            Object obj = hashMap.get(key);
-//
-//            for(Template template : templates){
-//                if(template.type == TemplateType.FOR){
-//
-//                }
-//
-//                templateService.writeData(obj, template);
-//            }
-//            log.newLine();
-//        }
 
         log.close();
         br.close();

@@ -1,5 +1,0 @@
-Admin\n
-<? for ID in USERS.*.membership.id ?>
-Membership Id : <?= ID ?>\n
-<? endfor ?>
-\n

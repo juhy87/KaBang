@@ -38,16 +38,16 @@ public class TemplateService {
             Object obj2 = obj;
 
             for(int i = 1; i< split.length; i++){
-                if(obj2 == null){
-                    log.write("? ");
-                    break;
-                }
+//                if(obj2 == null){
+//                    log.write("? ");
+//                    break;
+//                }
 
                 if(obj2 instanceof JSONObject){
-                    obj2 = ((JSONObject) obj2).getOrDefault(split[i], null);
+                    obj2 = ((JSONObject) obj2).getOrDefault(split[i], "? ");
                 }else if(obj2 instanceof JSONArray) {
                     if (((JSONArray) obj2).size() == 0) {
-                        obj2 = null;
+                        obj2 = "?";
                     } else {
                         obj2 = ((JSONArray) obj2).get(Integer.parseInt(split[i]));
                     }
@@ -57,6 +57,7 @@ public class TemplateService {
 
                 if(obj2 instanceof String){
                     log.write(((String) obj2)+" ");
+                    break;
                 }
 
             }

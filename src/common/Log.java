@@ -28,8 +28,9 @@ public class Log {
          }
     }
     public void newLine(){
-//        System.out.println();
+
         try{
+            System.out.println();
             bw.newLine();
 
         }catch (IOException exception){
@@ -38,9 +39,9 @@ public class Log {
     }
 
     public void write(String str){
-//        System.out.print(str);
 
         try{
+            System.out.print(str);
             bw.write(str);
 
         }catch (IOException exception){

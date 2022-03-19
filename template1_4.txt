@@ -1,0 +1,5 @@
+Admin\n
+<? for MEMBERSHIP in USERS.*.membership ?>
+Membership Id : <?= MEMBERSHIP.id ?>\n
+<? endfor ?>
+\n

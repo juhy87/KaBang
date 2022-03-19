@@ -5,12 +5,25 @@ import entity.Template;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import java.util.Arrays;
+
 public class TemplateService {
 
     public static Log log = Log.getInstance();
 
-    public Object getObject(Object obj, Template template) {
-        String cmd = template.cmd;
+    public Object getObjectArr(Object obj, String cmd) {
+        String[] split = cmd.split("\\.");
+
+        JSONArray jonArr = new JSONArray();
+        for(int i = 0 ; i < ((JSONArray)obj).size() ; i++){
+            Object o = ((JSONArray) obj).get(i);
+            jonArr.add(getObject(o, String.join(".", Arrays.copyOfRange(split, 1, split.length))));
+        }
+
+        return obj;
+    }
+
+    public Object getObject(Object obj, String cmd) {
         String[] split = cmd.split("\\.");
 
         //기저사례
@@ -36,7 +49,7 @@ public class TemplateService {
         return obj;
     }
 
-    public void writeData(JSONObject obj, Template template) {
+    public void writeData(Object obj, Template template) {
 
         log.write(template.prefix + ": ");
         for(String cmd : template.cmds){
@@ -75,4 +88,8 @@ public class TemplateService {
 
     }
 
+    public void writeData(Template template) {
+        log.write(template.cmd);
+        log.newLine();
+    }
 }

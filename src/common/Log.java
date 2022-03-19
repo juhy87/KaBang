@@ -30,7 +30,7 @@ public class Log {
     public void newLine(){
 
         try{
-//            System.out.println();
+            System.out.println();
             bw.newLine();
 
         }catch (IOException exception){
@@ -41,7 +41,7 @@ public class Log {
     public void write(String str){
 
         try{
-//            System.out.print(str);
+            System.out.print(str);
             bw.write(str);
 
         }catch (IOException exception){

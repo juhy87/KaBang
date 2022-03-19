@@ -14,6 +14,9 @@ public class Template {
     public String cmd;
 
     public Template(String cmd){
+
+        this.cmd = cmd.replace("\\n", "");
+
         if(cmd.contains(":")){
             String[] split = cmd.split(":");
 
@@ -32,7 +35,11 @@ public class Template {
                 this.cmd = forMathe(cmd);
                 type= TemplateType.FOR;
 
+            }else{
+
+                type= TemplateType.STR;
             }
+
         }
     }
 

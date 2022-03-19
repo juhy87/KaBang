@@ -21,7 +21,7 @@ public class Main {
     public static void main(String[] args) {
 
         String inputFilePath = "input.txt";
-        String templateFilePath = "template.txt";
+        String templateFilePath = "template1_5.txt";
         if(args.length == 2){
             inputFilePath = args[0];
             templateFilePath = args[1];
@@ -54,28 +54,43 @@ public class Main {
             }
 
             //4. outputFile.txt write
-            for(int i = 0 ; i < jsonArray.size(); i++){
-                Object obj1 = jsonArray.get(i);
-                for(Template template : templates){
+            Object obj1 = null;
 
-                    if(template.type == TemplateType.FOR){
-                        obj1 = templateService.getObject(obj1, template);
-                    }else if(template.type == TemplateType.END){
-                        obj1 = jsonArray.get(i);
+            for(Template template : templates){
+
+                if(template.type == TemplateType.FOR){
+                    if(template.cmd.contains("*")){
+                        obj1 = templateService.getObjectArr(jsonArray, template.cmd);
                     }else{
                         if(obj1 instanceof JSONObject){
-                            templateService.writeData((JSONObject) obj1, template);
+                            obj1 = templateService.getObject(obj1, template.cmd);
                         }else if(obj1 instanceof  JSONArray){
                             for(int j = 0 ; j < ((JSONArray)obj1).size(); j++ ){
                                 Object obj2  = ((JSONArray) obj1).get(j);
-                                templateService.writeData((JSONObject) obj2, template);
+                                templateService.getObject(obj2, template.cmd);
                             }
 
                         }
+//                        obj1 = templateService.getObject(obj1, template.cmd);
+                    }
+
+                }else if(template.type == TemplateType.END){
+                    obj1 = jsonArray;
+                }else if(template.type == TemplateType.STR){
+                    templateService.writeData(template);
+                }else {
+                    if(obj1 instanceof JSONObject){
+                        templateService.writeData(obj1, template);
+                    }else if(obj1 instanceof  JSONArray){
+                        for(int j = 0 ; j < ((JSONArray)obj1).size(); j++ ){
+                            Object obj2  = ((JSONArray) obj1).get(j);
+                            templateService.writeData(obj2, template);
+                        }
+
                     }
                 }
-                log.newLine();
             }
+
 
             log.close();
             br.close();

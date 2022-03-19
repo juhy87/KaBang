@@ -20,8 +20,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String inputFilePath = "input2.txt";
-        String templateFilePath = "template2_3.txt";
+        String inputFilePath = "input.txt";
+        String templateFilePath = "template.txt";
         if(args.length == 2){
             inputFilePath = args[0];
             templateFilePath = args[1];
@@ -82,8 +82,10 @@ public class Main {
 
         }catch (ParseException e){
             System.out.println("Input Json Parsing Fail");
+            System.out.println(e.getMessage());
         }catch (IOException e){
             System.out.println("File IO Fail");
+            System.out.println(e.getMessage());
         }
 
     }
